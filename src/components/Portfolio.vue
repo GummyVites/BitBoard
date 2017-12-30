@@ -1,30 +1,126 @@
 <template>
-  <div id="Portfolio">
-    <h3>Portfolio</h3>
+<div id="Portfolio">
+  <h3>Portfolio</h3>
+  <div class="search-wrapper">
+    <div class="container_m">
+      <nav class="nav-center" role="navigation">
+        <div class="nav-wrapper container">
+          <ul>
+            <li>
+              <a <router-link to="/">Home</router-link></a>
+            </li>
+            <li>
+              <a<router-link to="/hi"><span class="icon-drawer"></span>&nbsp; Portfolio</router-link>
+                </a>
+            </li>
+            <li>
+              <a href=""><span class="icon-bubbles"></span>&nbsp; News</a>
+            </li>
+            <li>
+              <a href="#"><span class="icon-dice"></span>&nbsp;Data Visulization</a>
+            </li>
+            <li>
+              <a href="">Login</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
   </div>
+  <li v-for="coin in portfolio" class="card card-1">
+    <div>
+      {{coin.buyOrSell}}
+    </div>
+    <div class="chip"> {{coin.coinSymbol}}</div>
+    <div>
+      {{coin.coinName}}
+    </div>
+    <div>
+      Price Bought At :{{coin.buyingPrice}}
+    </div>
+    <div>
+      Amount bought: {{coin.coinAmount}}
+    </div>
+  </li>
+  <div class="home">
+    <router-link to="/" class="btn-floating btn-large red">
+      <i class="fa fa-home" aria-hidden="true"></i>
+    </router-link>
+  </div>
+
+
+  <div class="fixed-action-btn">
+    <router-link to="/add" class="btn-floating btn-large red">
+      <i class="fa fa-plus"></i>
+    </router-link>
+  </div>
+</div>
 </template>
 
 <script>
 import db from './firebaseInit'
 export default {
   name: 'Portfolio',
-  data(){
-    return{
+  data() {
+    return {
       portfolio: []
     }
   },
-    created () {
-      db.collection('coinAdded').get().then(querySnapshot =>{
-        querySnapshot.forEach(doc =>{
-          console.log(doc.data);
-          const data ={
-
-          }
-        })
+  created() {
+    db.collection('coinAdded').get().then(querySnapshot => {
+      querySnapshot.forEach(doc => {
+        const data = {
+          'coinName': doc.data().coinName,
+          'buyingPrice': doc.data().buyingPrice,
+          'coinAmount': doc.data().coinAmount,
+          'buyOrSell': doc.data().buyOrSell,
+          'coinSymbol': doc.data().coinSymbol
+        }
+        this.portfolio.push(data);
       })
-    }
+    })
+  }
 }
 </script>
 
-<style>
+<style scoped>
+.card {
+  background: #fff;
+  border-radius: 2px;
+  display: inline-block;
+  height: 300px;
+  margin: 1rem;
+  position: relative;
+  width: 300px;
+  margin-bottom: 10px;
+}
+
+.card-1 {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+}
+
+.card-1:hover {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.home {
+  position: absolute;
+  bottom: 2.5%;
+  left: 1%;
+}
+
+nav.nav-center ul {
+  text-align: center;
+}
+
+nav.nav-center ul li {
+  display: inline;
+  float: none;
+}
+
+nav.nav-center ul li a {
+  display: inline-block;
+}
+
 </style>

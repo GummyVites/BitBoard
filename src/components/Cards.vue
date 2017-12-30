@@ -1,12 +1,16 @@
 <template>
 <div class="Cards">
   <div class="search-wrapper">
-    <section id="masthead" class="shadow">
-      <div class="container_m">
-        <nav>
+    <div class="container_m">
+      <nav class="nav-center" role="navigation">
+        <div class="nav-wrapper container">
           <ul>
             <li>
-              <router-link to="/hi"><a><span class="icon-drawer"></span>&nbsp;  Portfolio</a></router-link>
+              <a href="#">Home</a>
+            </li>
+            <li>
+              <a<router-link to="/hi"><span class="icon-drawer"></span>&nbsp; Portfolio</router-link>
+                </a>
             </li>
             <li>
               <a href=""><span class="icon-bubbles"></span>&nbsp; News</a>
@@ -17,17 +21,13 @@
             <li>
               <a href="">Login</a>
             </li>
-            <li>
-              <a href="#">About us</a>
-            </li>
-            <li>
-              <input type="text" v-model="search" placeholder="Search Coin Symbol" />
-            </li>
           </ul>
-        </nav>
-      </div>
-    </section>
+        </div>
+      </nav>
+    </div>
   </div>
+
+  <div id="searchInput"> <input type="text" v-model="search" placeholder="Search Coin Symbol" /></div>
 
   <div v-for="item in filteredName" icon="search" class="card card-1">
     <div>{{item.name}}</div>
@@ -54,7 +54,7 @@ export default {
   },
   created: function() {
     $watch: {
-    this.$http.get('https://api.coinmarketcap.com/v1/ticker/')
+      this.$http.get('https://api.coinmarketcap.com/v1/ticker/')
       .then(function(response) {
         var datas = response.data;
         this.coins = response.data;
@@ -102,108 +102,6 @@ export default {
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
-.search-wrapper {
-  margin: 10px 0;
-}
-
-input {
-  width: 140%;
-  height: 20px;
-  margin-top: 4.5px;
-  margin-left: 5px;
-}
-
-a {
-  text-decoration: none;
-  color: #6c73cc;
-}
-
-li {
-  list-style: none;
-}
-
-.container_m {
-  width: 1160px;
-  margin: 0 auto;
-  z-index: 100;
-}
-
-.shadow {
-  position: relative;
-}
-
-.shadow:after {
-  display: block;
-  content: "";
-  position: absolute;
-  z-index: -1;
-
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0);
-  bottom: 1px;
-  left: 18%;
-  right: 10%;
-
-  width: 60%;
-  height: 50%;
-  -moz-border-radius: 100%;
-  border-radius: 100%;
-  -webkit-transition: box-shadow .8s ease;
-}
-
-.shadow:hover.shadow:after {
-  display: block;
-  content: "";
-  position: absolute;
-  z-index: -1;
-
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
-  bottom: 1px;
-  left: 18%;
-  right: 10%;
-
-  width: 60%;
-  height: 50%;
-  -moz-border-radius: 100%;
-  border-radius: 100%;
-
-}
-
-.container_m nav {
-  margin-left: 130px;
-}
-
-.container_m nav ul li {
-  float: left;
-  margin-top: 10px;
-  margin-bottom: 4px;
-}
-
-.container_m nav ul li a {
-  background: white;
-
-  border-radius: 2px;
-
-  display: inline-block;
-  font-size: .8em;
-  font-family: 'Open Sans', arial;
-  color: rgba(0, 0, 0, .6);
-
-  margin-right: 1px;
-  padding: 11px 17px;
-
-}
-
-.container_m nav ul li a:hover {
-  background: rgba(0, 0, 0, .1);
-  box-shadow: 0 0 1px 0 rgba(0, 0, 0, .2) inset;
-  color: black;
-
-}
-
-.container_m nav ul li:first-child a:hover span {
-  color: red;
-}
-
 .container_m:before,
 .container_m:after {
   content: '';
@@ -214,9 +112,27 @@ li {
   clear: both;
 }
 
-#masthead {
-  width: 100%;
-  background: white;
-  margin-bottom: 15px;
+nav.nav-center ul {
+  text-align: center;
+}
+
+nav.nav-center ul li {
+  display: inline;
+  float: none;
+}
+
+nav.nav-center ul li a {
+  display: inline-block;
+}
+
+input{
+  text-align: center;
+}
+#searchInput{
+  width: 50%;
+  text-align: center;
+  float: none;
+  margin-left: 25%;
+  margin-top: 2%;
 }
 </style>
