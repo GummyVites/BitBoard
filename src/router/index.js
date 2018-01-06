@@ -3,6 +3,8 @@ import Router from 'vue-router'
 import Cards from '@/components/Cards'
 import Portfolio from '@/components/Portfolio'
 import addPortfolio from '@/components/addPortfolio'
+import Login from '@/components/Login'
+import Signup from '@/components/Signup'
 
 Vue.use(Router)
 
@@ -22,6 +24,16 @@ export default new Router({
       path: '/add',
       name: 'addPortfolio',
       component: addPortfolio
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      component: Login
+    },
+    {
+      path: '/Signup',
+      name: 'Signup',
+      component: Signup
     }
   ]
 })

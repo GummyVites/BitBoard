@@ -1,6 +1,6 @@
 <template>
 <div id="Portfolio">
-  <h3>Portfolio</h3>
+  <h1>Portfolio</h1>
   <div class="search-wrapper">
     <div class="container_m">
       <nav class="nav-center" role="navigation">
@@ -20,27 +20,27 @@
               <a href="#"><span class="icon-dice"></span>&nbsp;Data Visulization</a>
             </li>
             <li>
-              <a href="">Login</a>
+              <a<router-link to="/Login">Login</router-link></a>
             </li>
           </ul>
         </div>
       </nav>
     </div>
   </div>
+
   <li v-for="coin in portfolio" class="card card-1">
-    <div>
-      {{coin.buyOrSell}}
-    </div>
-    <div class="chip"> {{coin.coinSymbol}}</div>
-    <div>
-      {{coin.coinName}}
-    </div>
-    <div>
-      Price Bought At :{{coin.buyingPrice}}
-    </div>
-    <div>
-      Amount bought: {{coin.coinAmount}}
-    </div>
+    <div><h4>{{coin.buyOrSell}}</h4></div>
+
+    <div><h5>{{coin.coinName}}</h5></div>
+
+    <div> {{coin.coinSymbol}}</div>
+
+    <div>Price Bought At :{{coin.buyingPrice}}</div>
+
+    <div>Amount bought: {{coin.coinAmount}}</div>
+
+    <div>Margins: {{calculateProfit()}}</div>
+
   </li>
   <div class="home">
     <router-link to="/" class="btn-floating btn-large red">
@@ -63,10 +63,15 @@ export default {
   name: 'Portfolio',
   data() {
     return {
-      portfolio: []
+      portfolio: [],
+      crypto:[]
     }
   },
   created() {
+    this.$http.get('https://api.coinmarketcap.com/v1/ticker/')
+      .then(function(response) {
+        this.crypto = response.data;
+      })
     db.collection('coinAdded').get().then(querySnapshot => {
       querySnapshot.forEach(doc => {
         const data = {
@@ -79,6 +84,14 @@ export default {
         this.portfolio.push(data);
       })
     })
+  },
+  methods: {
+    calculateProfit(){
+      console.log(this.portfolio.coinAmount);
+      console.log(this.portfolio.buyingPrice);
+      console.log(crypto.price_usd);
+      ((this.portfolio.coinAmount)*(this.portfolio.buyingPrice)) - ((crypto.price_usd) * (this.portfolio.coinAmount));
+    }
   }
 }
 </script>
