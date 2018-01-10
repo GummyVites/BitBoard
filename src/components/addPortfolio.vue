@@ -1,8 +1,11 @@
 <template>
 <div id="new-employee">
-  <h3>New Employee</h3>
+  <!-- Header -->
+  <h3>New Coin</h3>
+
   <div class="row">
     <form @submit.prevent="addCoin" class="col s12">
+      <!-- Selector buy or sell -->
       <label>Buy Or Sell:</label>
       <br />
       <br />
@@ -14,6 +17,7 @@
       <br />
       <br />
 
+      <!-- coin Selecter -->
       <label>Choose Coin Symbol:</label>
       <br />
       <br />
@@ -26,6 +30,7 @@
       <br />
       <br />
 
+      <!-- coin Name input -->
       <div class="row">
         <div class="input-field col s12">
           <input type="text" v-model="coinName" required>
@@ -33,6 +38,7 @@
         </div>
       </div>
 
+      <!-- amount sold or bought -->
       <div class="row">
         <div class="input-field col s12">
           <input type="text" v-model="coinAmount" required>
@@ -40,6 +46,7 @@
         </div>
       </div>
 
+      <!-- price bought or sold at -->
       <div class="row">
         <div class="input-field col s12">
           <input type="text" v-model="buyingPrice" required>
@@ -47,8 +54,10 @@
         </div>
       </div>
 
+      <!-- submit button -->
       <button type="submit" class="btn">Submit</button>
       <router-link to="/hi" class="btn grey">Cancel</router-link>
+
     </form>
   </div>
 </div>
@@ -69,6 +78,7 @@ export default {
       buyOrSell: ''
     }
   },
+  // APi JSON Getter
   created: function() {
     this.$http.get('https://api.coinmarketcap.com/v1/ticker/')
       .then(function(response) {
@@ -76,6 +86,7 @@ export default {
         console.log(this.coins);
       })
   },
+  // send form to firebase sever
   methods: {
     addCoin() {
       db.collection('coinAdded').add({
@@ -94,6 +105,7 @@ export default {
         })
     }
   },
+  //mount select forms
   mounted: function() {
     $(document).ready(function() {
       $('select').material_select();

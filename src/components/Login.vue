@@ -1,8 +1,7 @@
 <template lang="html">
 <div class="Login">
-
+    <!-- nav Bar -->
     <nav class="nav-center">
-
         <ul>
           <li>
             <a <router-link to="/">Home</router-link></a>
@@ -21,31 +20,36 @@
             <a<router-link to="/Login">Login</router-link></a>
           </li>
         </ul>
-
     </nav>
+    <!-- end of nav bar -->
 
+    <!-- Login Form -->
   <body class="align">
     <h1>Login</h1>
   <div class="grid">
 
     <div class="form login">
 
+      <!-- email input -->
       <div class="form__field">
         <label for="login__username"><svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#user"></use></svg><span class="hidden">Username</span></label>
         <input id="login__username" v-model="email" type="text" name="username" class="form__input" placeholder="Username" required>
       </div>
 
+      <!-- password input -->
       <div class="form__field">
         <label for="login__password"><svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#lock"></use></svg><span class="hidden">Password</span></label>
         <input id="login__password" v-model="password" type="password" name="password" class="form__input" placeholder="Password" required>
       </div>
 
+      <!-- submit button -->
       <div class="form__field">
-        <input type="submit" value="Sign In">
+        <input v-on:click= "onLogin" type="submit" value="Sign In">
       </div>
 
     </div>
 
+    <!-- signup router link -->
     <p class="text--center">Not a member? <a <router-link to="/Signup">Sign up now</router-link></a> <svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="assets/images/icons.svg#arrow-right"></use></svg></p>
 
   </div>
@@ -63,17 +67,18 @@ export default {
   name: 'Login',
   data() {
     return {
-      email:'',
-      password:''
+      email: '',
+      password: ''
     }
   },
-  methods:{
+  methods: {
+    //Firebase login function authentification
     onLogin: function() {
       firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
-        function(user){
-          alert('You have logged in')
+        function(user) {
+          this.$router.replace('/hi')
         },
-        function(err){
+        function(err) {
           alert('There was an error' + err.message)
         }
       );
@@ -89,18 +94,18 @@ export default {
 
 .align {
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
 }
 
 /* helpers/grid.css */
@@ -146,12 +151,12 @@ export default {
 
 * {
   -webkit-box-sizing: inherit;
-          box-sizing: inherit;
+  box-sizing: inherit;
 }
 
 html {
   -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   font-size: 100%;
   height: 100%;
 }
@@ -221,8 +226,8 @@ input[type='submit'] {
 
 .form__input {
   -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+  -ms-flex: 1;
+  flex: 1;
 }
 
 /* modules/login.css */
@@ -288,8 +293,13 @@ p {
   text-align: center;
 }
 
+<<<<<<< HEAD
 label{
   height: 7.3vh;
+=======
+label {
+  height: 9.3vh;
+>>>>>>> bb9e0f684dd7cb958df1d19f7ee45a576af3ba4b
 }
 
 nav.nav-center ul li {
@@ -301,9 +311,7 @@ nav.nav-center ul li a {
   display: inline-block;
 }
 
-h1{
+h1 {
   color: white;
 }
-
-
 </style>

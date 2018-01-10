@@ -1,5 +1,6 @@
 <template lang="html">
   <div class="Signup">
+    <!-- nav bar -->
     <nav class="nav-center">
         <ul>
           <li>
@@ -20,38 +21,49 @@
           </li>
         </ul>
     </nav>
+    <!-- end of nav bar -->
 
     <body class="align">
       <h1>Sign Up</h1>
     <div class="grid">
+      <!-- start of form input -->
       <div class="form login">
+
+        <!-- first name input -->
         <div class="form__field">
           <input v-model="firstName" type="text" name="first Name" class="form__input" placeholder="First Name" required>
         </div>
 
+        <!-- last name input -->
         <div class="form__field">
           <input v-model="lastName" type="text" name="last Name" class="form__input" placeholder="Last Name" required>
         </div>
 
+        <!-- email input -->
         <div class="form__field">
           <input v-model="email" type="text" name="email" class="form__input" placeholder="Email" required>
         </div>
 
+        <!-- username input -->
         <div class="form__field">
           <input v-model="username" type="text" name="username" class="form__input" placeholder="Username" required>
         </div>
 
+        <!-- password input -->
         <div class="form__field">
           <input v-model="password" type="text" name="password" class="form__input" placeholder="Password" required>
         </div>
 
+        <!-- submit button -->
         <div class="form__field">
           <input v-on:click="onsignUp" type="submit" value="Sign Up">
         </div>
 
+        <!-- cancel go back button -->
         <div class="form__field">
           <input<router-link to="/Login"> <input type="submit" value="Cancel"> </router-link>
         </div>
+        <!-- end of form input -->
     </div>
           </div>
     </body>
@@ -73,10 +85,11 @@ export default {
     }
   },
   methods:{
+    // signup firebase authentification
     onsignUp: function() {
       firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
         function(user){
-          alert('Your account has been created')
+          this.$router.replace('/hi')
         },
         function(err){
           alert('There was an error' +err.message)
