@@ -236,8 +236,7 @@ input[type='submit'] {
 .login input[type='password'],
 .login input[type='submit'] {
   border-radius: 0.25rem;
-  padding: 16px;
-  padding: 1rem;
+  height: 7.1vh;
 }
 
 .login label {
@@ -290,7 +289,7 @@ p {
 }
 
 label{
-  height: 9.3vh;
+  height: 7.3vh;
 }
 
 nav.nav-center ul li {
