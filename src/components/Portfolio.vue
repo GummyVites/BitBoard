@@ -1,10 +1,15 @@
 <template>
 <div id="Portfolio">
+  <!-- Header -->
   <h1>Portfolio</h1>
+
+  <!-- wrapper -->
   <div class="search-wrapper">
+    <!-- container -->
     <div class="container_m">
       <nav class="nav-center" role="navigation">
         <div class="nav-wrapper container">
+          <!-- list of links -->
           <ul>
             <li>
               <a <router-link to="/">Home</router-link></a>
@@ -22,12 +27,17 @@
             <li>
               <a<router-link to="/Login">Login</router-link></a>
             </li>
+            <li>
+              <a v-on:click="logout"> Sign out</a>
+            </li>
           </ul>
         </div>
       </nav>
     </div>
   </div>
+  <!-- end of nav bar -->
 
+  <!-- display as cards -->
   <li v-for="coin in portfolio" class="card card-1">
     <div><h4>{{coin.buyOrSell}}</h4></div>
 
@@ -39,16 +49,19 @@
 
     <div>Amount bought: {{coin.coinAmount}}</div>
 
+    <!-- calls calculate -->
     <div>Margins: {{calculateProfit()}}</div>
 
   </li>
+
+  <!-- home button -->
   <div class="home">
     <router-link to="/" class="btn-floating btn-large red">
       <i class="fa fa-home" aria-hidden="true"></i>
     </router-link>
   </div>
 
-
+  <!-- add button -->
   <div class="fixed-action-btn">
     <router-link to="/add" class="btn-floating btn-large red">
       <i class="fa fa-plus"></i>
@@ -59,6 +72,7 @@
 
 <script>
 import db from './firebaseInit'
+import firebase from 'firebase'
 export default {
   name: 'Portfolio',
   data() {
@@ -67,11 +81,13 @@ export default {
       crypto:[]
     }
   },
+  // api getter
   created() {
     this.$http.get('https://api.coinmarketcap.com/v1/ticker/')
       .then(function(response) {
         this.crypto = response.data;
       })
+    //calls firebase to get database
     db.collection('coinAdded').get().then(querySnapshot => {
       querySnapshot.forEach(doc => {
         const data = {
@@ -85,12 +101,18 @@ export default {
       })
     })
   },
+  // calculates Profit not finished
   methods: {
     calculateProfit(){
       console.log(this.portfolio.coinAmount);
       console.log(this.portfolio.buyingPrice);
       console.log(crypto.price_usd);
       ((this.portfolio.coinAmount)*(this.portfolio.buyingPrice)) - ((crypto.price_usd) * (this.portfolio.coinAmount));
+    },
+    logout: function() {
+      firebase.auth().signOut().then(() => {
+        this.$router.replace('/')
+      })
     }
   }
 }
