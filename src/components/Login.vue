@@ -11,7 +11,7 @@
               </a>
           </li>
           <li>
-            <a href=""><span class="icon-bubbles"></span>&nbsp; News</a>
+            <a<router-link to="/News">News</router-link></a>
           </li>
           <li>
             <a href="#"><span class="icon-dice"></span>&nbsp;Data Visulization</a>
@@ -75,10 +75,10 @@ export default {
     //Firebase login function authentification
     onLogin: function() {
       firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
-        function(user) {
+        (user) => {
           this.$router.replace('/hi')
         },
-        function(err) {
+        (err) => {
           alert('There was an error' + err.message)
         }
       );

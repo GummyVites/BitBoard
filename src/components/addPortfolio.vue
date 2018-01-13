@@ -101,7 +101,7 @@ export default {
           this.$router.push('/hi')
         })
         .catch(error => {
-          console.error('Error adding employee: ', error)
+          console.error('Error Updating Portfolio: ', error)
         })
     }
   },
