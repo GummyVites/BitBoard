@@ -32,8 +32,8 @@
 
       <!-- email input -->
       <div class="form__field">
-        <label for="login__username"><svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#user"></use></svg><span class="hidden">Username</span></label>
-        <input id="login__username" v-model="email" type="text" name="username" class="form__input" placeholder="Username" required>
+        <label for="login__username"><svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#user"></use></svg><span class="hidden">Email</span></label>
+        <input id="login__username" v-model="email" type="text" name="Email" class="form__input" placeholder="Username" required>
       </div>
 
       <!-- password input -->
@@ -293,13 +293,9 @@ p {
   text-align: center;
 }
 
-<<<<<<< HEAD
+
 label{
   height: 7.3vh;
-=======
-label {
-  height: 9.3vh;
->>>>>>> bb9e0f684dd7cb958df1d19f7ee45a576af3ba4b
 }
 
 nav.nav-center ul li {
