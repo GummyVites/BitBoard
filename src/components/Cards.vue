@@ -21,7 +21,7 @@
           </li>
           <!-- news -->
           <li>
-            <a href=""><span class="icon-bubbles"></span>&nbsp; News</a>
+            <a<router-link to="/News">News</router-link></a>
           </li>
           <!-- Data Vis -->
           <li>

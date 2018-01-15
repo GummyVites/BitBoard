@@ -6,6 +6,7 @@ import Portfolio from '@/components/Portfolio'
 import addPortfolio from '@/components/addPortfolio'
 import Login from '@/components/Login'
 import Signup from '@/components/Signup'
+import News from '@/components/News'
 import firebase from 'firebase'
 
 Vue.use(Router)
@@ -39,6 +40,11 @@ let router = new Router({
       path: '/Signup',
       name: 'Signup',
       component: Signup
+    },
+    {
+      path: '/News',
+      name: 'News',
+      component: News
     },
     {
       path:'*',

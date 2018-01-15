@@ -19,7 +19,7 @@
                 </a>
             </li>
             <li>
-              <a href=""><span class="icon-bubbles"></span>&nbsp; News</a>
+              <a<router-link to="/News">News</router-link></a>
             </li>
             <li>
               <a href="#"><span class="icon-dice"></span>&nbsp;Data Visulization</a>
