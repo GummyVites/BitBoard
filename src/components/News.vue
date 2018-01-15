@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="News">
   <h1>News</h1>
-
+  
   <div class="subreddits container">
     <h3>r/CryptoCurrency</h3>
     <ul class="item-list">
@@ -34,7 +34,7 @@ export default {
     Subreddit
   },
   created: function() {
-    this.$http.get('https://www.reddit.com/r/CryptoCurrency/top.json?limit=5')
+    this.$http.get('https://www.reddit.com/r/CryptoCurrency/top.json?limit=50')
       .then((response) => {
         this.subreddits = response.data.data.children;
       })

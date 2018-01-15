@@ -1,5 +1,5 @@
 <template lang="html">
-
+  <div class="navBar">
   <!-- nav Bar -->
   <nav class="nav-center">
       <ul>
@@ -22,10 +22,12 @@
       </ul>
   </nav>
   <!-- end of nav bar -->
+    </div>
 </template>
 
 <script>
 export default {
+  name: 'navBar'
 }
 </script>
 

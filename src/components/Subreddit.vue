@@ -3,7 +3,7 @@
     <a :href="makeUrl(item.data.permalink)" :style="makeImage(item.data.thumbnail)" target="_blank" class="thumbnail"></a>
     <div class="details">
       <a :href="makeUrl(item.data.permalink)" :title="item.data.title" target="_blank" class="title">
-        {{item.data.title}}
+        {{item.data.title | truncate}}
       </a>
       <br>
       <div class="stats">
@@ -26,6 +26,16 @@ export default {
     },
     makeUrl: function (permalink) {
       return 'http://reddit.com/'+permalink;
+    }
+  },
+  filters: {
+    truncate: function(value){
+      var length = 50;
+      if (value.length <= length) {
+        return value;
+      }else {
+        return value.substring(0, length) + '...';
+      }
     }
   }
 }
